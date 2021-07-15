@@ -17,22 +17,22 @@
 		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 	</header><!-- .entry-header -->
 
+	<div class="entry-meta">
+        <?php twentysixteen_entry_meta(); ?>
+        <?php
+            edit_post_link(
+                sprintf(
+                    /* translators: %s: Post title. */
+                    __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'twentysixteen' ),
+                    get_the_title()
+                ),
+                '<span class="edit-link">',
+                '</span>'
+            );
+            ?>
+    </div><!-- .entry-meta -->
+
 	<?php twentysixteen_excerpt(); ?>
 
 	<?php twentysixteen_post_thumbnail(); ?>
-
-	<footer class="entry-footer">
-		<?php twentysixteen_entry_meta(); ?>
-		<?php
-			edit_post_link(
-				sprintf(
-					/* translators: %s: Post title. */
-					__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'twentysixteen' ),
-					get_the_title()
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
-			?>
-	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

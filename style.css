@@ -764,7 +764,7 @@ a:active {
 .comment-content a,
 .pingback .comment-body > a,
 .textwidget a,
-.entry-footer a:hover,
+.entry-meta a:hover,
 .site-info a:hover {
 	box-shadow: 0 1px 0 0 currentColor;
 }
@@ -1713,7 +1713,7 @@ blockquote:after,
 .entry-header,
 .entry-summary,
 .entry-content,
-.entry-footer,
+.entry-meta,
 .page-content {
 	margin-right: 7.6923%;
 	margin-left: 7.6923%;
@@ -1753,6 +1753,10 @@ blockquote:after,
 a.post-thumbnail:hover,
 a.post-thumbnail:focus {
 	opacity: 0.85;
+}
+
+.entry-content {
+	margin-top: 2em;
 }
 
 .entry-content,
@@ -2003,7 +2007,7 @@ body:not(.search-results) .entry-summary > :last-child,
 	white-space: nowrap;
 }
 
-.entry-footer {
+.entry-meta {
 	color: #686868;
 	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
@@ -2012,27 +2016,27 @@ body:not(.search-results) .entry-summary > :last-child,
 	margin-top: 0.8em;
 }
 
-.entry-footer:empty {
+.entry-meta:empty {
 	margin: 0;
 }
 
-.entry-footer a {
+.entry-meta a {
 	color: #686868;
 }
 
-.entry-footer a:hover,
-.entry-footer a:focus {
+.entry-meta a:hover,
+.entry-meta a:focus {
 	color: #007acc;
 }
 
-.entry-footer > span:not(:last-child):after {
+.entry-meta > span:not(:last-child):after {
 	content: "\002f";
 	display: inline-block;
 	opacity: 0.7;
 	padding: 0 0.538461538em;
 }
 
-.entry-footer .avatar {
+.entry-meta .avatar {
 	height: 21px;
 	margin: -0.1538461538em 0.5384615385em 0 0;
 	width: 21px;
@@ -2880,7 +2884,7 @@ p > video {
 	.post-thumbnail,
 	.entry-content,
 	.entry-summary,
-	.entry-footer,
+	.entry-meta,
 	.comments-area,
 	.image-navigation,
 	.post-navigation,
@@ -3160,7 +3164,7 @@ p > video {
 	.post-thumbnail,
 	.entry-content,
 	.entry-summary,
-	.entry-footer,
+	.entry-meta,
 	.comments-area,
 	.image-navigation,
 	.post-navigation,
@@ -3417,7 +3421,7 @@ p > video {
 	.no-sidebar .entry-header,
 	.no-sidebar .entry-content,
 	.no-sidebar .entry-summary,
-	.no-sidebar .entry-footer,
+	.no-sidebar .entry-meta,
 	.no-sidebar .comments-area,
 	.no-sidebar .image-navigation,
 	.no-sidebar .post-navigation,
@@ -3607,7 +3611,7 @@ p > video {
 		margin-bottom: 0.5384615385em;
 	}
 
-	body:not(.search-results) article:not(.type-page) .entry-footer > span:last-child {
+	body:not(.search-results) article:not(.type-page) .entry-meta > span:last-child {
 		margin-bottom: 0;
 	}
 }
@@ -3831,7 +3835,7 @@ p > video {
 
 	.site-description,
 	.author-bio,
-	.entry-footer,
+	.entry-meta,
 	.sticky-post,
 	.taxonomy-description,
 	.entry-caption,
@@ -3869,8 +3873,8 @@ p > video {
 	body:not(.search-results) .entry-summary,
 	body:not(.search-results) .entry-summary blockquote,
 	.author-bio,
-	.entry-footer,
-	.entry-footer a,
+	.entry-meta,
+	.entry-meta a,
 	.sticky-post,
 	.taxonomy-description,
 	.entry-caption,
@@ -3939,7 +3943,7 @@ p > video {
 	}
 
 	.entry-header,
-	.entry-footer,
+	.entry-meta,
 	.page-header,
 	.page-content,
 	.entry-content,

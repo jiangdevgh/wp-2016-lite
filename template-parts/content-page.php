@@ -13,6 +13,18 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
+	<?php
+        edit_post_link(
+            sprintf(
+                /* translators: %s: Post title. */
+                __( 'Edit<span class="screen-reader-text"> "%s"</span>', 'twentysixteen' ),
+                get_the_title()
+            ),
+            '<div class="entry-meta"><span class="edit-link">',
+            '</span></div><!-- .entry-meta -->'
+        );
+    ?>
+
 	<?php twentysixteen_post_thumbnail(); ?>
 
 	<div class="entry-content">
@@ -31,17 +43,5 @@
 		);
 		?>
 	</div><!-- .entry-content -->
-
-	<?php
-		edit_post_link(
-			sprintf(
-				/* translators: %s: Post title. */
-				__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'twentysixteen' ),
-				get_the_title()
-			),
-			'<footer class="entry-footer"><span class="edit-link">',
-			'</span></footer><!-- .entry-footer -->'
-		);
-		?>
 
 </article><!-- #post-<?php the_ID(); ?> -->
