@@ -484,11 +484,11 @@ ol {
 }
 
 ul {
-	list-style: disc;
+	list-style: square;
 }
 
 ol {
-	list-style: decimal;
+	list-style: upper-alpha;
 	margin-left: 1.5em;
 }
 
@@ -737,55 +737,49 @@ input[type="search"].search-field {
  * 6.1 - Links
  */
 
+@keyframes highfade {
+	0% {
+		background-color: none;
+	}
+	20% {
+		background-color: yellow;
+	}
+	100% {
+		background-color: none;
+	}
+}
+@-webkit-keyframes highfade {
+	0% {
+		background-color: none;
+	}
+	20% {
+		background-color: yellow;
+	}
+	100% {
+		background-color: none;
+	}
+}
 a {
-	color: #007acc;
+	color: #f22f27;
 	text-decoration: none;
 }
-
-a:hover,
-a:focus,
-a:active {
-	color: #686868;
+a:hover {
+	color: #f55852;
+	text-decoration: underline;
 }
-
 a:focus {
-	outline: thin dotted;
+	outline-offset: -2px;
 }
-
-a:hover,
-a:active {
-	outline: 0;
+a:target, ol#footnotes li:target, sup a:target {
+	animation-name: highfade;
+	animation-duration: 2s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-name: highfade;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: ease-in-out;
 }
-
-.entry-content a,
-.entry-summary a,
-.taxonomy-description a,
-.logged-in-as a,
-.comment-content a,
-.pingback .comment-body > a,
-.textwidget a,
-.entry-meta a:hover,
-.site-info a:hover {
-	box-shadow: 0 1px 0 0 currentColor;
-}
-
-.entry-content a:hover,
-.entry-content a:focus,
-.entry-summary a:hover,
-.entry-summary a:focus,
-.taxonomy-description a:hover,
-.taxonomy-description a:focus,
-.logged-in-as a:hover,
-.logged-in-as a:focus,
-.comment-content a:hover,
-.comment-content a:focus,
-.pingback .comment-body > a:hover,
-.pingback .comment-body > a:focus,
-.textwidget a:hover,
-.textwidget a:focus {
-	box-shadow: none;
-}
-
 
 /**
  * 6.2 - Menus
@@ -1784,6 +1778,9 @@ a.post-thumbnail:focus {
 	line-height: 1.2173913043;
 	margin-top: 2.4347826087em;
 	margin-bottom: 1.2173913043em;
+	padding-bottom: 12px;
+	border-bottom: 2px black solid;
+	text-transform: uppercase;
 }
 
 .entry-content h3,
@@ -1793,8 +1790,11 @@ a.post-thumbnail:focus {
 	font-size: 19px;
 	font-size: 1.1875rem;
 	line-height: 1.1052631579;
-	margin-top: 2.9473684211em;
+	margin-top: 1.4736842105em;
 	margin-bottom: 1.4736842105em;
+	padding-left: 5px;
+	border-left: #f22f27 5px solid;
+	text-transform: uppercase;
 }
 
 .entry-content h4,
@@ -1821,7 +1821,8 @@ a.post-thumbnail:focus {
 .comment-content h4,
 .textwidget h4 {
 	letter-spacing: 0.140625em;
-	text-transform: uppercase;
+	text-transform: capitalize;
+	text-decoration: solid underline;
 }
 
 .entry-content h6,
@@ -2920,10 +2921,8 @@ p > video {
 		margin-left: 0;
 	}
 
-	.entry-content ul,
 	.entry-summary ul,
 	.comment-content ul,
-	.entry-content ol,
 	.entry-summary ol,
 	.comment-content ol {
 		margin-left: 0;
