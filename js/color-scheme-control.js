@@ -7,14 +7,12 @@
 ( function( api ) {
 	var cssTemplate = wp.template( 'twentysixteen-color-scheme' ),
 		colorSchemeKeys = [
-			'background_color',
 			'page_background_color',
 			'link_color',
 			'main_text_color',
 			'secondary_text_color'
 		],
 		colorSettings = [
-			'background_color',
 			'page_background_color',
 			'link_color',
 			'main_text_color',
@@ -27,36 +25,29 @@
 				this.setting.bind( 'change', function( value ) {
 					var colors = colorScheme[value].colors;
 
-					// Update Background Color.
-					var color = colors[0];
-					api( 'background_color' ).set( color );
-					api.control( 'background_color' ).container.find( '.color-picker-hex' )
-						.data( 'data-default-color', color )
-						.wpColorPicker( 'defaultColor', color );
-
 					// Update Page Background Color.
-					color = colors[1];
+					color = colors[0];
 					api( 'page_background_color' ).set( color );
 					api.control( 'page_background_color' ).container.find( '.color-picker-hex' )
 						.data( 'data-default-color', color )
 						.wpColorPicker( 'defaultColor', color );
 
 					// Update Link Color.
-					color = colors[2];
+					color = colors[1];
 					api( 'link_color' ).set( color );
 					api.control( 'link_color' ).container.find( '.color-picker-hex' )
 						.data( 'data-default-color', color )
 						.wpColorPicker( 'defaultColor', color );
 
 					// Update Main Text Color.
-					color = colors[3];
+					color = colors[2];
 					api( 'main_text_color' ).set( color );
 					api.control( 'main_text_color' ).container.find( '.color-picker-hex' )
 						.data( 'data-default-color', color )
 						.wpColorPicker( 'defaultColor', color );
 
 					// Update Secondary Text Color.
-					color = colors[4];
+					color = colors[3];
 					api( 'secondary_text_color' ).set( color );
 					api.control( 'secondary_text_color' ).container.find( '.color-picker-hex' )
 						.data( 'data-default-color', color )

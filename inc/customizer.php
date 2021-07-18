@@ -16,29 +16,7 @@
  */
 function twentysixteen_custom_header_and_background() {
 	$color_scheme             = twentysixteen_get_color_scheme();
-	$default_background_color = trim( $color_scheme[0], '#' );
-	$default_text_color       = trim( $color_scheme[3], '#' );
-
-	add_theme_support(
-		'custom-background',
-		/**
-		 * Filters the arguments used when adding 'custom-background' support in Twenty Sixteen.
-		 *
-		 * @since Twenty Sixteen 1.0
-		 *
-		 * @param array $args {
-		 *     An array of custom-background support arguments.
-		 *
-		 *     @type string $default-color Default color of the background.
-		 * }
-		 */
-		apply_filters(
-			'twentysixteen_custom_background_args',
-			array(
-				'default-color' => $default_background_color,
-			)
-		)
-	);
+	$default_text_color       = trim( $color_scheme[2], '#' );
 
 	add_theme_support(
 		'custom-header',
@@ -162,7 +140,7 @@ function twentysixteen_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'page_background_color',
 		array(
-			'default'           => $color_scheme[1],
+			'default'           => $color_scheme[0],
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -186,7 +164,7 @@ function twentysixteen_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'link_color',
 		array(
-			'default'           => $color_scheme[2],
+			'default'           => $color_scheme[1],
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -207,7 +185,7 @@ function twentysixteen_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'main_text_color',
 		array(
-			'default'           => $color_scheme[3],
+			'default'           => $color_scheme[2],
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -228,7 +206,7 @@ function twentysixteen_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'secondary_text_color',
 		array(
-			'default'           => $color_scheme[4],
+			'default'           => $color_scheme[3],
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -316,7 +294,6 @@ function twentysixteen_get_color_schemes() {
 			'default' => array(
 				'label'  => __( 'Default', 'twentysixteen' ),
 				'colors' => array(
-					'#1a1a1a',
 					'#ffffff',
 					'#007acc',
 					'#1a1a1a',
@@ -326,7 +303,6 @@ function twentysixteen_get_color_schemes() {
 			'dark'    => array(
 				'label'  => __( 'Dark', 'twentysixteen' ),
 				'colors' => array(
-					'#262626',
 					'#1a1a1a',
 					'#9adffd',
 					'#e5e5e5',
@@ -336,7 +312,6 @@ function twentysixteen_get_color_schemes() {
 			'gray'    => array(
 				'label'  => __( 'Gray', 'twentysixteen' ),
 				'colors' => array(
-					'#616a73',
 					'#4d545c',
 					'#c7c7c7',
 					'#f2f2f2',
@@ -346,7 +321,6 @@ function twentysixteen_get_color_schemes() {
 			'red'     => array(
 				'label'  => __( 'Red', 'twentysixteen' ),
 				'colors' => array(
-					'#ffffff',
 					'#ff675f',
 					'#640c1f',
 					'#402b30',
@@ -356,7 +330,6 @@ function twentysixteen_get_color_schemes() {
 			'yellow'  => array(
 				'label'  => __( 'Yellow', 'twentysixteen' ),
 				'colors' => array(
-					'#3b3721',
 					'#ffef8e',
 					'#774e24',
 					'#3b3721',
@@ -454,7 +427,7 @@ function twentysixteen_color_scheme_css() {
 	$color_scheme = twentysixteen_get_color_scheme();
 
 	// Convert main text hex color to rgba.
-	$color_textcolor_rgb = twentysixteen_hex2rgb( $color_scheme[3] );
+	$color_textcolor_rgb = twentysixteen_hex2rgb( $color_scheme[2] );
 
 	// If the rgba values are empty return early.
 	if ( empty( $color_textcolor_rgb ) ) {
@@ -463,11 +436,10 @@ function twentysixteen_color_scheme_css() {
 
 	// If we get this far, we have a custom color scheme.
 	$colors = array(
-		'background_color'      => $color_scheme[0],
-		'page_background_color' => $color_scheme[1],
-		'link_color'            => $color_scheme[2],
-		'main_text_color'       => $color_scheme[3],
-		'secondary_text_color'  => $color_scheme[4],
+		'page_background_color' => $color_scheme[0],
+		'link_color'            => $color_scheme[1],
+		'main_text_color'       => $color_scheme[2],
+		'secondary_text_color'  => $color_scheme[3],
 		'border_color'          => vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.2)', $color_textcolor_rgb ),
 
 	);
@@ -513,7 +485,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	$colors = wp_parse_args(
 		$colors,
 		array(
-			'background_color'      => '',
 			'page_background_color' => '',
 			'link_color'            => '',
 			'main_text_color'       => '',
@@ -525,13 +496,8 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	return <<<CSS
 	/* Color Scheme */
 
-	/* Background Color */
-	body {
-		background-color: {$colors['background_color']};
-	}
-
 	/* Page Background Color */
-	.site {
+	body, .site {
 		background-color: {$colors['page_background_color']};
 	}
 
@@ -841,7 +807,6 @@ CSS;
  */
 function twentysixteen_color_scheme_css_template() {
 	$colors = array(
-		'background_color'      => '{{ data.background_color }}',
 		'page_background_color' => '{{ data.page_background_color }}',
 		'link_color'            => '{{ data.link_color }}',
 		'main_text_color'       => '{{ data.main_text_color }}',
@@ -865,7 +830,7 @@ add_action( 'customize_controls_print_footer_scripts', 'twentysixteen_color_sche
  */
 function twentysixteen_page_background_color_css() {
 	$color_scheme          = twentysixteen_get_color_scheme();
-	$default_color         = $color_scheme[1];
+	$default_color         = $color_scheme[0];
 	$page_background_color = get_theme_mod( 'page_background_color', $default_color );
 
 	// Don't do anything if the current color is the default.
@@ -938,7 +903,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_page_background_color_css', 11 
  */
 function twentysixteen_link_color_css() {
 	$color_scheme  = twentysixteen_get_color_scheme();
-	$default_color = $color_scheme[2];
+	$default_color = $color_scheme[1];
 	$link_color    = get_theme_mod( 'link_color', $default_color );
 
 	// Don't do anything if the current color is the default.
@@ -1041,7 +1006,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_link_color_css', 11 );
  */
 function twentysixteen_main_text_color_css() {
 	$color_scheme    = twentysixteen_get_color_scheme();
-	$default_color   = $color_scheme[3];
+	$default_color   = $color_scheme[2];
 	$main_text_color = get_theme_mod( 'main_text_color', $default_color );
 
 	// Don't do anything if the current color is the default.
@@ -1195,7 +1160,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_main_text_color_css', 11 );
  */
 function twentysixteen_secondary_text_color_css() {
 	$color_scheme         = twentysixteen_get_color_scheme();
-	$default_color        = $color_scheme[4];
+	$default_color        = $color_scheme[3];
 	$secondary_text_color = get_theme_mod( 'secondary_text_color', $default_color );
 
 	// Don't do anything if the current color is the default.
